@@ -1,9 +1,11 @@
 const mongoose = require("mongoose")
+require("dotenv").config();
+
 
 const mongoUriAtlas = ``
-const mongoUriLocalhost = `mongodb://localhost:27017/crud`
-
+const mongoUriLocalhost = process.env.MONGO_URI
 let mongoUri = ``
+
 
 const connectToDatabase = async () => {
 	if (process.env.NODE_ENV === "production") {
@@ -19,9 +21,9 @@ const connectToDatabase = async () => {
 			useUnifiedTopology: true,
 			tls: process.env.NODE_ENV === "production",
 		});
-		console.log("Connection with db successful");
+		console.log("Connexion à la base de données réussie");
 	} catch (error) {
-		console.log("Error during db connection", error);
+		console.log("Erreur lors de la connexion à la base de données", error);
 	}
 };
 
